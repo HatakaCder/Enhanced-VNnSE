@@ -1,6 +1,6 @@
 import NavBar from "./components/NavBar"
-import Carousel from "./components/Carousel"
 import Home from "./pages/Home"
+import Footer from "./components/Footer"
 
 function App() {
 
@@ -8,6 +8,7 @@ function App() {
     <>
         <NavBar></NavBar>
         <Home></Home>
+        <Footer></Footer>
     </>
   )
 }
