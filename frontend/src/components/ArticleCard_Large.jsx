@@ -8,9 +8,9 @@ export default function ArticleCard_Large(){
             />
 
             <div className="p-4">
-                <h2 className="text-lg font-semibold text-gray-800 mb-2">Tiêu đề bài viết</h2>
-                <p className="text-sm text-gray-600 mb-4">
-                Đây là mô tả ngắn của bài viết để thu hút người đọc nhấp vào xem thêm nội dung chi tiết.
+                <h2 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-3">Bộ Công an đề xuất phạt tới 200 triệu đồng, án 20 năm tù với tội mua bán người</h2>
+                <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                Trong dự thảo Bộ luật Hình sự sửa đổi, ngoài mức án tù, ban soạn thảo Bộ Công an đề xuất tăng gấp đôi số tiền phạt với tội mua bán người.
                 </p>
 
                 <div className="flex justify-between text-xs text-gray-500">
