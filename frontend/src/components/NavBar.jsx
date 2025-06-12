@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Search from "./Search";
 
 export default function NavBar(){
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -14,11 +15,12 @@ export default function NavBar(){
                 <a href="#" className="text-gray-600 hover:text-black">Cơ quan báo chí</a>
                 </div>
 
-                <div className="hidden sm:flex items-center space-x-4">
-                <a href="#" className="text-sm text-gray-600 hover:text-black">Đăng nhập</a>
-                <a href="#" className="text-sm bg-gray-800 text-white px-3 py-1.5 rounded hover:bg-black">
-                    Đăng ký
-                </a>
+                <div className="hidden sm:flex items-center gap-x-4">
+                    <Search></Search>
+                    <a href="#" className="text-sm text-gray-600 hover:text-black">Đăng nhập</a>
+                    <a href="#" className="text-sm bg-gray-800 text-white px-3 py-1.5 rounded hover:bg-black">
+                        Đăng ký
+                    </a>
                 </div>
 
                 <div className="md:hidden">
