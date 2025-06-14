@@ -14,8 +14,8 @@ export default function ArticleCard_Large(){
                 </p>
 
                 <div className="flex justify-between text-xs text-gray-500">
-                <span>📅 22 Tháng 5, 2025</span>
-                <span>📰 Nguồn: VNExpress</span>
+                <span>22 Tháng 5, 2025</span>
+                <span>VNExpress</span>
                 </div>
             </div>
         </div>

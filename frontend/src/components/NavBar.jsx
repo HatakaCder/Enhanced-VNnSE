@@ -5,13 +5,13 @@ export default function NavBar(){
     const [mobileOpen, setMobileOpen] = useState(false);
 
     return (
-        <nav className="bg-white shadow px-6 py-4">
+        <nav className="bg-white shadow px-[15%] py-4">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="text-2xl font-bold text-black">VNnSE</div>
 
                 <div className="hidden md:flex space-x-6">
-                <a href="#" className="text-gray-600 hover:text-black">Trang chủ</a>
-                <a href="#" className="text-gray-600 hover:text-black">Chuyên mục</a>
+                <a href="/" className="text-gray-600 hover:text-black">Trang chủ</a>
+                <a href="/category" className="text-gray-600 hover:text-black">Chuyên mục</a>
                 <a href="#" className="text-gray-600 hover:text-black">Cơ quan báo chí</a>
                 </div>
 

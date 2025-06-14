@@ -15,7 +15,7 @@ export default function ArticleCard_SmallWide() {
         </h2>
 
         <div className="text-sm text-gray-500 mt-2">
-          <span>Nguồn: VnExpress</span>
+          <span>VnExpress</span>
           <span className="mx-2">•</span>
           <span>12/06/2025</span>
         </div>
