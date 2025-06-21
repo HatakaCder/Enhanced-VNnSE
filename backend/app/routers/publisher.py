@@ -6,12 +6,12 @@ router = APIRouter()
 
 @router.post("", response_model=Publisher_Pydantic, status_code=status.HTTP_201_CREATED)
 async def create_publisher(publisher_info: PublisherIn_Pydantic):
-    publisher_obj = await crud.create_publisher(publisher_info.dict(exclue_unset=True))
+    publisher_obj = await crud.create_publisher(publisher_info.dict(exclude_unset=True))
     return await Publisher_Pydantic.from_tortoise_orm(publisher_obj)
 
 @router.get("", response_model=list[Publisher_Pydantic])
 async def get_all_publishers():
-    qs = await crud.get_all_categories()
+    qs = await crud.get_all_publishers()
     return await Publisher_Pydantic.from_queryset(qs)
 
 @router.get("/{publisher_id}", response_model=Publisher_Pydantic)

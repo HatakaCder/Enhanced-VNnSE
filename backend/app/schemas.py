@@ -1,4 +1,5 @@
 from tortoise.contrib.pydantic import pydantic_model_creator
+from pydantic import BaseModel, ConfigDict
 from app.models import User, Category, Publisher, Article, Bookmark, ReadingHistory, ArticleEmbedding
 
 # User
@@ -53,12 +54,11 @@ ReadingHistoryIn_Pydantic = pydantic_model_creator(
 )
 
 # Article Embedding
-ArticleEmbedding_Pydantic = pydantic_model_creator(
-    ArticleEmbedding, name="ArticleEmbedding"
-)
+class ArticleEmbeddingOut(BaseModel):
+    article_id: int
+    vbert_vector: dict
+    vde_vector: dict
 
-ArticleEmbeddingIn_Pydantic = pydantic_model_creator(
-    ArticleEmbedding,
-    name="ArticleEmbeddingIn",
-    exclude_readonly=True
-)
+    model_config = ConfigDict(
+        from_attributes=True
+    )
