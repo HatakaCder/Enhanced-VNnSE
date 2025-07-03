@@ -14,12 +14,20 @@ async def get_all_categories():
     qs = await crud.get_all_categories()
     return await Category_Pydantic.from_queryset(qs)
 
-@router.get("/{category_id}", response_model=Category_Pydantic)
+@router.get("/id/{category_id}", response_model=Category_Pydantic)
 async def get_category(category_id: int):
     category = await crud.get_category(category_id)
     if not category:
         raise HTTPException(status_code=404, detail="Category not found")
     return await Category_Pydantic.from_tortoise_orm(category)
+
+@router.get("/{category_slug}", response_model=Category_Pydantic)
+async def get_category_by_slug(category_slug: str):
+    category = await crud.get_category_by_slug(category_slug)
+    if not category:
+        raise HTTPException(status_code=404, detail="Category not found")
+    return await Category_Pydantic.from_tortoise_orm(category)
+
 
 @router.put("/{category_id}", response_model=Category_Pydantic)
 async def update_category(category_id: int, info: CategoryIn_Pydantic):

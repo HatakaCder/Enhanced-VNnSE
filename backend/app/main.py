@@ -4,7 +4,7 @@ import app.signals
 from tortoise.contrib.fastapi import register_tortoise
 
 from app.config import settings
-from app.routers import user, category, publisher, article, articleEmbedding, bookmark, readingHistory
+from app.routers import user, category, source, article, articleEmbedding, bookmark, readingHistory
 
 app = FastAPI(title="News API")
 
@@ -17,9 +17,11 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+print("Loaded CORS origins:", settings.BACKEND_CORS_ORIGINS)
+
 app.include_router(user.router, prefix="/user", tags=["user"])
 app.include_router(category.router, prefix="/category", tags=["category"])
-app.include_router(publisher.router, prefix="/publisher", tags=["publisher"])
+app.include_router(source.router, prefix="/source", tags=["source"])
 app.include_router(article.router, prefix="/article", tags=["article"])
 app.include_router(bookmark.router, prefix="/bookmark", tags=["bookmark"])
 app.include_router(readingHistory.router, prefix="/reading-history", tags=["reading-history"])

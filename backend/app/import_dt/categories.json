@@ -1,0 +1,38 @@
+[
+  {
+    "name":"Mặt trận",
+    "slug":"mat-tran"
+  },
+  {
+    "name":"Xã hội",
+    "slug":"xa-hoi"
+  },
+  {
+    "name":"Thời sự",
+    "slug":"thoi-su"
+  },
+  {
+    "name":"Media",
+    "slug":"media"
+  },
+  {
+    "name":"Kinh doanh",
+    "slug":"kinh-doanh"
+  },
+  {
+    "name":"Pháp luật",
+    "slug":"phap-luat"
+  },
+  {
+    "name":"Bạn đọc",
+    "slug":"ban-doc"
+  },
+  {
+    "name":"Giáo dục",
+    "slug":"giao-duc"
+  },
+  {
+    "name":"Thế giới",
+    "slug":"the-gioi"
+  }
+]

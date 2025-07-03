@@ -36,6 +36,12 @@ async def get_category(category_id: int):
     except DoesNotExist:
         return None
 
+async def get_category_by_slug(category_slug: str):
+    try:
+        return await Category.filter(slug=category_slug).first()
+    except DoesNotExist:
+        return None
+
 async def update_category_obj(category, data: dict):
     for field, val in data.items():
         setattr(category, field, val)
@@ -45,34 +51,34 @@ async def update_category_obj(category, data: dict):
 async def delete_category(category_id: int):
     return await Category.filter(id=category_id).delete()
 
-# ----- PUBLISHER -----
-async def create_publisher(data):
-    return await Publisher.create(**data)
+# ----- SOURCE -----
+async def create_source(data):
+    return await Source.create(**data)
 
-async def get_publisher(publisher_id: int):
+async def get_source(source_id: int):
     try:
-        return await Publisher.get(id=publisher_id)
+        return await Source.get(id=source_id)
     except DoesNotExist:
         return None
     
-async def get_all_publishers():
-    return Publisher.all()
+async def get_all_sources():
+    return Source.all()
 
-async def update_publisher_obj(publisher, data: dict):
+async def update_source_obj(source, data: dict):
     for field, val in data.items():
-        setattr(publisher, field, val)
-    await publisher.save()
-    return publisher
+        setattr(source, field, val)
+    await source.save()
+    return source
 
-async def delete_publisher(publisher_id: int):
-    return await Publisher.filter(id=publisher_id).delete()
+async def delete_source(source_id: int):
+    return await Source.filter(id=source_id).delete()
 
 # ----- ARTICLE -----
-async def create_article(category, publisher, data):
-    return await Article.create(**data, category=category, publisher=publisher)
+async def create_article(category, source, data):
+    return await Article.create(**data, category=category, source=source)
 
 async def get_all_articles():
-    return Article.all()
+    return Article.all().select_related("category", "source")
 
 async def get_article(article_id: int):
     try:

@@ -1,7 +1,8 @@
 from tortoise.contrib.pydantic import pydantic_model_creator
 from pydantic import BaseModel, ConfigDict
-from app.models import User, Category, Publisher, Article, Bookmark, ReadingHistory, ArticleEmbedding
-
+from app.models import User, Category, Source, Article, Bookmark, ReadingHistory, ArticleEmbedding
+from tortoise import Tortoise
+Tortoise.init_models(["app.models"], "models")
 # User
 User_Pydantic = pydantic_model_creator(User, name="User")
 UserIn_Pydantic = pydantic_model_creator(
@@ -14,21 +15,47 @@ CategoryIn_Pydantic = pydantic_model_creator(
     Category, name="CategoryIn", exclude_readonly=True
 )
 
-# Publisher
-Publisher_Pydantic = pydantic_model_creator(Publisher, name="Publisher")
-PublisherIn_Pydantic = pydantic_model_creator(
-    Publisher, name="PublisherIn", exclude_readonly=True
+# Source
+Source_Pydantic = pydantic_model_creator(
+    Source, 
+    name="Source"
+)
+SourceIn_Pydantic = pydantic_model_creator(
+    Source, name="SourceIn", exclude_readonly=True
 )
 
 # Article
 Article_Pydantic = pydantic_model_creator(
-    Article, name="Article"
+    Article, name="Article",
+    include=(
+        "id",
+        "title",
+        "slug",
+        "content",
+        "summary",
+        "link",
+        "img",
+        "created_at",
+        "category", 
+        "source",   
+    )
 )
 
 ArticleIn_Pydantic = pydantic_model_creator(
     Article,
     name="ArticleIn",
     exclude_readonly=True,
+    include=(
+        "title",
+        "slug",
+        "content",
+        "summary",
+        "link",
+        "img",
+        "created_at",
+        "category_id",
+        "source_id",
+    ),
 )
 
 # Bookmark

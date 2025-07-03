@@ -24,7 +24,7 @@ class Category(Model):
 
     articles: fields.ReverseRelation["Article"]
 
-class Publisher(Model):
+class Source(Model):
     id = fields.IntField(pk=True)
     name = fields.CharField(max_length=50, unique=True)
     slug = fields.CharField(max_length=100, unique=True)
@@ -35,11 +35,11 @@ class Publisher(Model):
 class Article(Model):
     id = fields.IntField(pk=True)
     title = fields.CharField(max_length=500)
-    slug = fields.CharField(max_length=500, unique=True)
-    content = fields.TextField()
+    slug = fields.CharField(max_length=200, unique=True)
+    content = fields.JSONField()
     summary = fields.CharField(max_length=1000, null=True)
     link = fields.CharField(max_length=300)
-    img = fields.CharField(max_length=300)
+    img = fields.JSONField()
     created_at = fields.DatetimeField()
 
     category: fields.ForeignKeyRelation["Category"] = fields.ForeignKeyField(
@@ -47,8 +47,8 @@ class Article(Model):
         related_name="articles"
     )
 
-    publisher: fields.ForeignKeyRelation["Publisher"] = fields.ForeignKeyField(
-        "models.Publisher",
+    source: fields.ForeignKeyRelation["Source"] = fields.ForeignKeyField(
+        "models.Source",
         related_name="articles"
     )
 
