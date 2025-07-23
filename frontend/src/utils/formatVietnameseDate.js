@@ -1,4 +1,4 @@
-export function formatVietnameseDate(isoString) {
+export function formatVietnameseDate(isoString, type=1) {
     /**
      * Convert an ISO-8601 date string into a human-friendly Vietnamese date.
      *
@@ -27,11 +27,24 @@ export function formatVietnameseDate(isoString) {
      */
 
     const date = new Date(isoString);
-    const formatted = new Intl.DateTimeFormat('vi-VN', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-    }).format(date);
+    if (type === 1) {
+        const formatted = new Intl.DateTimeFormat('vi-VN', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+        }).format(date);
 
-    return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+        return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+    } else if (type === 2) {
+        return date.toLocaleDateString('vi-VN')
+    } else if (type === 3) {
+        return date.toLocaleString("vi-VN", {
+            day:   "2-digit",
+            month: "2-digit",
+            year:  "numeric",
+            hour:   "2-digit",
+            minute: "2-digit",
+            hour12: false
+        })
+    }
 }

@@ -1,8 +1,15 @@
 export default function ArticleCard_Large(props){
     return (
-        <a href={props.link} className="block max-w-sm bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+        <a  
+            href={props.link} 
+            className="
+                block max-w-sm bg-white rounded-2xl shadow-md overflow-hidden 
+                hover:shadow-lg transition-shadow duration-300 cursor-pointer
+            "
+        >
+            
             <img
-                className="w-full h-48 object-cover rounded-2xl"
+                className="w-full h-48 md:h-40 lg:h-48 object-cover rounded-2xl"
                 src={props.img[0].url}
                 alt="Thumbnail"
             />

@@ -14,18 +14,25 @@ async def get_all_sources():
     qs = await crud.get_all_sources()
     return await Source_Pydantic.from_queryset(qs)
 
-@router.get("/{source_id}", response_model=Source_Pydantic)
+@router.get("/id/{source_id}", response_model=Source_Pydantic)
 async def get_source(source_id: int):
     source = await crud.get_source(source_id)
     if not source:
-        raise HTTPException(satus_code=404, detail="source not found")
+        raise HTTPException(status_code=404, detail="source not found")
+    return await Source_Pydantic.from_tortoise_orm(source)
+
+@router.get("/{source_slug}", response_model=Source_Pydantic)
+async def get_source_by_slug(source_slug: str):
+    source = await crud.get_source_by_slug(source_slug)
+    if not source:
+        raise HTTPException(status_code=404, detail="source not found")
     return await Source_Pydantic.from_tortoise_orm(source)
 
 @router.put("/{source_id}", response_model=Source_Pydantic)
 async def update_source(source_id: int, info: SourceIn_Pydantic):
     source = await crud.get_source(source_id)
     if not source:
-        raise HTTPException(satus_code=404, detail="source not found")
+        raise HTTPException(status_code=404, detail="source not found")
     updated = await crud.update_source_obj(source, info.dict(exclude_unset=True))
     return await Source_Pydantic.from_tortoise_orm(updated)
 
@@ -33,4 +40,4 @@ async def update_source(source_id: int, info: SourceIn_Pydantic):
 async def delete_source(source_id: int):
     deleted = await crud.delete_source(source_id)
     if not deleted:
-        raise HTTPException(satus_code=404, detail="source not found")
+        raise HTTPException(status_code=404, detail="source not found")

@@ -30,9 +30,11 @@ Article_Pydantic = pydantic_model_creator(
     include=(
         "id",
         "title",
+        "title_tokenized",
         "slug",
         "content",
         "summary",
+        "summary_tokenized",
         "link",
         "img",
         "created_at",
@@ -47,9 +49,11 @@ ArticleIn_Pydantic = pydantic_model_creator(
     exclude_readonly=True,
     include=(
         "title",
+        "title_tokenized",
         "slug",
         "content",
         "summary",
+        "summary_tokenized",
         "link",
         "img",
         "created_at",

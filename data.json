@@ -1,0 +1,104 @@
+{
+    "User": {
+        "description": "It's just user duh.",
+        "fields": {
+            "id": "Integer, PK",
+            "username": "String",
+            "email": "String",
+            "hashed_pwd": "String",
+            "created_at": "datetime",
+            "is_deleted": "Boolean default=False"
+        }
+    },
+
+    "Category": {
+        "description": "type of article",
+        "fields": {
+            "id": "Integer, PK",
+            "name": "String unique",
+            "slug": "String unique"
+        }
+    },
+
+    "Publisher": {
+        "description": "Publisher",
+        "fields": {
+            "id": "Integer, PK",
+            "name":"String unique",
+            "slug":"String unique",
+            "img": "String unique (link)"
+        }
+    },
+
+    "Article": {
+        "description": "Article",
+        "fields": {
+            "id": "Integer, PK",
+            "title": "String",
+            "slug": "String unique",
+            "content": "String",
+            "summary": "String",
+            "link": "String",
+            "img": "String",
+            "created_at": "datetime"
+        }
+    },
+
+    "ArticleCategory": {
+        "fields": {
+            "article_id": "Integer, FK -> Article.id",
+            "category_id": "Integer, FK -> Category.id"
+        },
+        "indexes": [
+            ["aritcle_id", "category_id"]
+        ]
+    },
+
+    "ArticlePublisher": {
+        "fields": {
+            "article_id": "Integer, FK -> Article.id",
+            "publisher_id": "Integer, FK -> Publisher.id"
+        },
+        "indexes": [
+            ["aritcle_id", "publisher_id"]
+        ]
+    },
+
+    "Bookmark": {
+        "description": "Bookmark",
+        "fields": {
+            "id": "Integer, PK, auto-generated",
+            "user_id": "Integer, FK -> User.id",
+            "article_id": "Integer, FK -> Article.id",
+            "save_at": "datetime"
+        },
+        "indexes": [
+            ["user_id", "article_id"]
+        ]
+    },
+
+    "ReadingHistory": {
+        "description": "Reading history by user",
+        "fields": {
+            "id": "Integer, PK, auto-generated",
+            "user_id": "Integer, FK -> User.id",
+            "article_id": "Integer, FK -> Article.id",
+            "read_at": "datetime",
+            "percent_reading": "Integer"
+        },
+        "indexes": [
+            ["user_id", "article_id"]
+        ]
+    },
+
+    "ArticleEmbedding": {
+        "description": "Embeddings of article",
+        "fields": {
+            "article_id": "Integer, PK & FK -> Article.id",
+            "tf_idf_vector": "Array",
+            "bm25_vector": "Array",
+            "vbert_vector": "Array",
+            "vde_vector": "Array"
+        }
+    }
+}

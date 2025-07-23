@@ -1,7 +1,6 @@
 from tortoise.models import Model
 from tortoise import fields
 
-
 class User(Model):
     id = fields.IntField(pk=True)
     name = fields.CharField(max_length=100, nullable=False)
@@ -35,9 +34,11 @@ class Source(Model):
 class Article(Model):
     id = fields.IntField(pk=True)
     title = fields.CharField(max_length=500)
+    title_tokenized = fields.CharField(max_length=500)
     slug = fields.CharField(max_length=200, unique=True)
     content = fields.JSONField()
     summary = fields.CharField(max_length=1000, null=True)
+    summary_tokenized = fields.CharField(max_length=1000, null=True)
     link = fields.CharField(max_length=300)
     img = fields.JSONField()
     created_at = fields.DatetimeField()

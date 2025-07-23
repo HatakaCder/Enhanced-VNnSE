@@ -70,17 +70,22 @@ export default function NavBar(props){
 
                         <div className="
                             absolute top-full left-0
-                            mt-2
                             bg-white rounded-lg shadow-lg
                             opacity-0 group-hover:opacity-100
-                            transform -translate-y-2 group-hover:translate-y-0
-                            transition-all duration-200
                             pointer-events-none group-hover:pointer-events-auto
+                            transform translate-y-2 group-hover:translate-y-0
+                            transition-all duration-200
                             z-20
-                            flex space-x-4
-                            px-4 py-2
+                            flex space-x-4 px-4 py-2
                         ">
-                            <a>Hello</a>    
+                            {
+                                props.sources.map((cat) => (
+                                    <a 
+                                        key={cat.id} 
+                                        className="whitespace-nowrap text-gray-700 hover:text-black hover:underline"
+                                        href={`/source/${cat.slug}`}>{cat.name}</a>
+                                ))
+                            }
                         </div>    
 
 

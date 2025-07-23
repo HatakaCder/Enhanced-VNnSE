@@ -60,7 +60,13 @@ async def get_source(source_id: int):
         return await Source.get(id=source_id)
     except DoesNotExist:
         return None
-    
+
+async def get_source_by_slug(source_slug: str):
+    try:
+        return await Source.filter(slug=source_slug).first()
+    except DoesNotExist:
+        return None
+
 async def get_all_sources():
     return Source.all()
 

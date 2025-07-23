@@ -41,7 +41,11 @@ export default function Home(props){
             <div>
                 <p className="text-2xl font-semibold my-6">Latest articles:</p>
                 
-                <div className="grid grid-cols-5 grid-rows-2 gap-4">
+                <div className="
+                    grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5  
+                    gap-4
+                    ">
+                    
                     {latestArticles.map((art)=>(
                         <ArticleCard_Large key={art.id} {...art} created_at={formatVietnameseDate(art.created_at)}></ArticleCard_Large>
                     ))}

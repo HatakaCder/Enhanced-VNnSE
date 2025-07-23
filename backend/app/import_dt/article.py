@@ -45,9 +45,11 @@ async def import_all():
         )
 
         title     = data["title"]
+        title_tokenized = data["title_tokenized"]
         slug      = data.get("slug") or slugify(title)
         link      = data["article_url"]
         summary   = data.get("summary")
+        summary_tokenized = data["summary_tokenized"]
         created_at = parse_created_at(data["created_at"])
         content   = data["contents"]
         img_field = [
@@ -60,9 +62,11 @@ async def import_all():
         try:
             art = await Article.create(
                 title=title,
+                title_tokenized=title_tokenized,
                 slug=slug,
                 link=link,
                 summary=summary,
+                summary_tokenized=summary_tokenized,
                 created_at=created_at,
                 content=content,
                 img=img_field,

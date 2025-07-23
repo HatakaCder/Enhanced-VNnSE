@@ -51,18 +51,18 @@ export function Pagination({ currentPage, totalPages, onPageChange }) {
 
 
 
-export default function Category(){
+export default function Source(){
     const { slug } = useParams()
     const [articles, setArticles] = useState([])
-    const [category, setCategory] = useState("aaaa")
+    const [source, setSource] = useState("aaaa")
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch(`http://127.0.0.1:8000/category/${slug}`)
+            const response = await fetch(`http://127.0.0.1:8000/source/${slug}`)
             const result = await response.json()
             await setArticles(result.articles.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)))
-            await setCategory(result.name)
+            await setSource(result.name)
             await setLoading(false)
         }
         fetchData()
@@ -86,12 +86,12 @@ export default function Category(){
     
     return (
         <div className="max-w-[70%] mx-auto my-6">
-            <p className="text-3xl font-bold">{category}</p>
+            <p className="text-3xl font-bold">{source}</p>
             <section className="py-6">
             <h3 className="text-2xl font-semibold text-gray-900">Latest Articles</h3>
             <div className="mt-6 space-y-12">
                 {currentArticles.map((art, idx) => (
-                <ArticleCard_XL key={idx} {...art} created_at={formatVietnameseDate(art.created_at, 3)}/>
+                <ArticleCard_XL key={idx} {...art} created_at={formatVietnameseDate(art.created_at, 3)} source={source}/>
                 ))}
             </div>
             </section>

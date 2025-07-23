@@ -4,7 +4,7 @@ import app.signals
 from tortoise.contrib.fastapi import register_tortoise
 
 from app.config import settings
-from app.routers import user, category, source, article, articleEmbedding, bookmark, readingHistory
+from app.routers import user, category, source, article, articleEmbedding, bookmark, readingHistory, search
 
 app = FastAPI(title="News API")
 
@@ -26,7 +26,7 @@ app.include_router(article.router, prefix="/article", tags=["article"])
 app.include_router(bookmark.router, prefix="/bookmark", tags=["bookmark"])
 app.include_router(readingHistory.router, prefix="/reading-history", tags=["reading-history"])
 app.include_router(articleEmbedding.router, prefix="/article-embedding", tags=["article-embedding"])
-
+app.include_router(search.router, prefix="/search", tags=["search"])
 
 register_tortoise(
     app,
